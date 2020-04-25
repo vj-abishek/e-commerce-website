@@ -1,0 +1,147 @@
+{% extends './base.html' %}
+
+{% block content %}
+<style>
+    .conta {
+        width: 100%;
+        height: auto;
+        padding: 10px
+    }
+
+    .showcasseME {
+        width: 100%;
+        height: auto;
+
+        background: #fff;
+        border-radius: 3px;
+        border: 1px solid #ebebeb;
+        box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.1)
+    }
+
+    header .title_me {
+        width: 100%;
+        height: 50px;
+        padding: 5px;
+
+    }
+
+    header {
+        border: 0px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    article {
+        width: 250px;
+        height: auto;
+        padding: 10px;
+
+    }
+
+    .container_for_this {
+        width: 150px;
+        height: 150px;
+
+    }
+</style>
+<div class="slider">
+    <ul class="slides">
+        <li>
+            <img src="https://rukminim1.flixcart.com/flap/3376/560/image/ccafa1d232b967c8.jpg?q=50" alt="Realme X2 Pro">
+        </li>
+        <li>
+            <img src="https://rukminim1.flixcart.com/flap/3376/560/image/6800aa7fc679790e.jpg?q=50" alt="OnePlus 7 Pro">
+        </li>
+        <li>
+            <img src="https://rukminim1.flixcart.com/flap/3376/560/image/cef92baa077b3278.jpg?q=50" alt="OnePlus 7 Pro">
+        </li>
+        <li>
+            <img src="https://rukminim1.flixcart.com/flap/3376/560/image/979a6900abff9ef8.jpg?q=50" alt="OnePlus 7 Pro">
+        </li>
+
+    </ul>
+</div>
+<!-- <div class="conta">
+    <div class="showcasseME">
+        <header class="title_me">
+            <h5 style=" margin-left: 10px;
+            font-family: 600;">Best of Electronic Devices</h5>
+        </header>
+        <article>
+            <div class="container_for_this">
+                <img style="width:auto;height:150px"
+                    src="https://rukminim1.flixcart.com/image/416/416/jmjhifk0/dslr-camera/f/g/t/na-d3500-nikon-original-imaf9fgtzqxgtk5s.jpeg?q=70"
+                    alt="Nikon D700">
+
+            </div>
+            <p>
+                Nikon D3500 DSLR Camera
+            </p>
+            <div class="center-align" style="color:royalblue;font-family:10px">With Lens Kits</div>
+        </article>
+    </div> -->
+<div class="conta center-align">
+    {% if latest_products%}
+    <div class="showcasseME">
+        <header class="title_me left-align">
+            <h5 style=" margin-left: 10px;
+            font-family: 600;">Best of Electronic Devices</h5>
+        </header>
+        {% for products in latest_products%}
+
+
+
+        <article style="display: inline-block;">
+            <div class="container_for_this">
+                <img style="width:auto;height:150px" src={{products.ImageUrl}} alt="Nikon D700">
+
+            </div>
+            <p>
+                {{products.Name}}
+            </p>
+            <div class="center-align" style="color:royalblue;font-family:10px">₹{{products.Price}}</div>
+        </article>
+
+        {% endfor%}
+        {% else %}
+        <p>No Products</p>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Textile bar -->
+
+<div class="conta center-align">
+    {% if latest_products%}
+    <div class="showcasseME">
+        <header class="title_me left-align">
+            <h5 style=" margin-left: 10px;
+                font-family: 600;">Top Offers</h5>
+        </header>
+        {% for textile in latest_textile%}
+
+
+
+        <article style="display: inline-block;">
+            <div class="container_for_this">
+                <img style="width:auto;height:150px" src={{textile.ImageUrl}} alt="Nikon D700">
+
+            </div>
+            <p>
+                {{textile.Name}}
+            </p>
+            <div class="center-align" style="color:royalblue;font-family:10px">₹{{textile.Price}}</div>
+        </article>
+
+        {% endfor%}
+        {% else %}
+        <p>No Products</p>
+        {% endif %}
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.slider');
+        var instances = M.Slider.init(elems);
+    });
+</script>
+{% endblock %}
